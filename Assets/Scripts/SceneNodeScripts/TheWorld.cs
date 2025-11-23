@@ -18,7 +18,7 @@ public class TheWorld : MonoBehaviour
         foreach (SceneNode root in TheRoots)
         {
             Matrix4x4 i = Matrix4x4.identity;
-            root.CompositeXform(i);
+            root.CompositeXform(i); 
         }
     }
 }
