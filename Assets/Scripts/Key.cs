@@ -20,32 +20,18 @@ public class Key : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider[] hitCols = Physics.OverlapBox(StartPos, gameObject.transform.localScale/4);
-        if (Char == 'G') {
-          Debug.Log(hitCols[0]);
-        }
-        if (colliding || (hitCols[0].name != "Key(Clone)")) {
-            gameObject.transform.localPosition = StartPos + new Vector3(0f, -0.2f, 0f);
-            Screen.text += Char;
+        Collider[] hitCols = Physics.OverlapBox(StartPos, gameObject.transform.localScale/3);
+        if ((hitCols[0].name != "Key(Clone)")) {
+            if (colliding == false) {
+                gameObject.transform.localPosition = StartPos + new Vector3(0f, -0.2f, 0f);
+                Screen.text += Char;
+                colliding = true;
+            }
         }
         else {
             gameObject.transform.localPosition = StartPos;
+            colliding = false;
         }
     }
     
-    void OnTriggerEnter(Collider col) {
-        colliding = true;
-        Screen.text += Char;
-    }
-    void OnTriggerExit(Collider col) {
-        colliding = false;
-    }
-
-    void OnCollisionEnter(Collision col) {
-      colliding = true;
-      Screen.text += Char;
-    }
-    void OnCollisionExit(Collision col) {
-      colliding = false;
-    }
 }
