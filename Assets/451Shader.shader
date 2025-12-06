@@ -2,7 +2,10 @@
 {
     Properties
     {
+        _MainTex("Texture", 2D) = "white" {}
+        _NormalMap("Normal Map", 2D) = "bump" {}
         MyColor ("Color", Color) = (1,1,1,1)
+
     }
 
     SubShader
@@ -21,33 +24,32 @@
             struct appdata
             {
                 float4 vertex : POSITION;
+                float2 uv     : TEXCOORD0; // safe because default Unity meshes have UVs
             };
 
             struct v2f
             {
                 float4 vertex : SV_POSITION;
+                float2 uv     : TEXCOORD0;
             };
 
-            // uniforms (set from C#)
             uniform float4x4 MyXformMat;
+            sampler2D _MainTex;
             uniform fixed4 MyColor;
 
             v2f MyVert(appdata v)
             {
                 v2f o;
-
-                // apply your matrix
                 float4 worldPos = mul(MyXformMat, v.vertex);
-
-                // camera transform
                 o.vertex = mul(UNITY_MATRIX_VP, worldPos);
-
+                o.uv = v.uv; // pass mesh UVs directly
                 return o;
             }
 
             fixed4 MyFrag(v2f i) : SV_Target
             {
-                return MyColor;
+                fixed4 texCol = tex2D(_MainTex, i.uv);
+                return texCol * MyColor;
             }
             ENDCG
         }
