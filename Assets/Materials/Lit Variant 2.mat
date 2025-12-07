@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 2
   m_ValidKeywords:
   - _EMISSION
+  - _RECEIVE_SHADOWS_OFF
   m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -27,9 +28,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _ReceiveShadows: 0
     m_Colors:
-    - _EmissionColor: {r: 2, g: 2, b: 2, a: 1}
+    - _EmissionColor: {r: 2.6082375, g: 2.6082375, b: 2.6082375, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &927812576193945884

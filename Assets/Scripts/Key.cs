@@ -30,7 +30,7 @@ public class Key : MonoBehaviour
         Collider[] hitCols = Physics.OverlapBox(StartPos, Vector3.one * 0.2f);
         if (hitCols.Length > 0 && hitCols[0].name != "Key(Clone)") {
             if (colliding == false) {
-                gameObject.transform.localPosition = StartPos + new Vector3(0f, -0.1f, 0f);
+                gameObject.transform.localPosition = StartPos + new Vector3(0f, -0.08f, 0f);
                 Screen.text += Char;
                 colliding = true;
             }
