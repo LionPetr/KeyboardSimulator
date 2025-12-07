@@ -55,7 +55,7 @@ public class HandController : MonoBehaviour
 
 
         //for rotating the hand itself in case the person messes it up bad
-        if (selectedObject.name == "hand")
+        if (selectedObject.name == "Hand")
         {
             if (Input.GetKey(KeyCode.Q))
                 yAxisRot -= rotationSpeed * Time.deltaTime;
