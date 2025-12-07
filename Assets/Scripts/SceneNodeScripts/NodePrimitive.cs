@@ -29,8 +29,6 @@ public class NodePrimitive : MonoBehaviour
         Matrix4x4 m = nodeMatrix * p * trs * invp;
         worldMatrix = m;
         GetComponent<Renderer>().sharedMaterial.SetMatrix("MyXformMat", m);
-        //GetComponent<Renderer>().sharedMaterial.SetTexture("_MainTex", texture);
-        //GetComponent<Renderer>().sharedMaterial.SetColor("MyColor", MyColor);
     }
 
     public Matrix4x4 GetWorldMatrix()

@@ -4,6 +4,8 @@
     {
         _MainTex("Texture", 2D) = "white" {}
         MyColor("Color", Color) = (1,1,1,1)
+        _LightPos("Light Position", Vector) = (0, 3, 0, 0)
+        _LightIntensity("Light Intensity", Float) = 1
     }
 
     SubShader
@@ -39,6 +41,9 @@
             float4 _MainTex_ST;
             fixed4 MyColor;
 
+            float3 _LightPos;
+            float _LightIntensity;
+
             v2f MyVert(appdata v)
             {
                 v2f o;
@@ -58,11 +63,11 @@
             {
                 fixed4 texCol = tex2D(_MainTex, i.uv) * MyColor;
 
-                float3 lightDir = normalize(float3(0.3, 1, 0.2));
+                float3 lightDir = normalize(_LightPos - i.worldPos);
 
                 float NdotL = max(dot(i.normalWS, lightDir), 0);
 
-                float lighting = 0.2 + NdotL * 0.8;
+                float lighting = 0.2 + NdotL * _LightIntensity;
 
                 return texCol * lighting;
             }
